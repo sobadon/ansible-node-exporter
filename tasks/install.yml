@@ -4,7 +4,7 @@
     name: "{{ _node_exporter_system_group }}"
     state: present
     system: true
-  when: _node_exporter_system_group not in ["root", "nobody"]
+  when: _node_exporter_system_group not in ["root", "nogroup"]
 
 - name: Create the node_exporter user
   user:
@@ -15,7 +15,7 @@
     system: true
     create_home: false
     home: /
-  when: _node_exporter_system_user not in ["root", "nogroup"]
+  when: _node_exporter_system_user not in ["root", "nobody"]
 
 - block:
     - name: Download node_exporter binary to local folder
